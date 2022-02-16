@@ -1,5 +1,6 @@
 package com.example.algorithm.datastructure.linked;
 
+
 import java.util.Stack;
 
 /**
@@ -10,11 +11,29 @@ import java.util.Stack;
  */
 public class ReverseLinkedExample {
 
+    /**
+     * 头插法
+     *
+     * @param head
+     * @return
+     */
+    public static LinkedNode reverseLinkedList(LinkedNode head) {
+        LinkedNode newList = new LinkedNode();
+        while (head.next != null) {
+            LinkedNode next = head.next;     // 1,2,3
+            head.next = newList.next;
+            newList.next = head;
+            head = next;
+        }
+        return newList.next;
+    }
+
     public static LinkedNode reverseLinked(LinkedNode linkedNode) {
         Stack<LinkedNode> stack = new Stack<>();
         stack.push(linkedNode);
-        while (linkedNode.next != null) {
+        while (linkedNode != null) {
             stack.push(linkedNode);
+            linkedNode = linkedNode.next;
         }
         LinkedNode result = new LinkedNode();
         result = stack.pop();
@@ -32,4 +51,5 @@ public class ReverseLinkedExample {
     public static void main(String[] args) {
 
     }
+
 }
